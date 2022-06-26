@@ -1,6 +1,7 @@
 public class Scacchiera {
     private Pezzo[][] scacchiera;
-    private Pezzo p0; //il pezzo vuoto
+    private Pezzo p0; //il pezzo di passaggio
+    private Pezzo vuoto; //il pezzo vuoto
     private String stringa = "";
     public Scacchiera(){
         scacchiera = new Pezzo[8][8];
@@ -17,6 +18,15 @@ public class Scacchiera {
         return scacchiera[x][y];
     }
 
+    public boolean sposta(int x1, int y1, int x2, int y2){
+        vuoto = new Pezzo(0,0);
+        p0 = new Pezzo(0,0);
+        p0 = this.scacchiera[x1][y1];
+        this.scacchiera[x1][y1] = vuoto;
+        this.scacchiera[x2][y2] = p0;
+        return true;
+    }
+
     public void stampaScacchiera(){
         for(int i = 0; i < 8; i++){
             for(int j = 0; j < 8; j++){
@@ -28,6 +38,7 @@ public class Scacchiera {
 
             }
         }
+        System.out.println("-------------------------------------------");
     }
 
     private void posizionaPezzi(){
